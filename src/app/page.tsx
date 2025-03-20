@@ -7,20 +7,28 @@ import { useState, useEffect, useRef } from "react";
 // 포트폴리오 데이터 확장
 const portfolioItems = [
   {
-    id: "event-page",
-    title: "이벤트 페이지",
-    description: "사용자 참여를 유도하는 인터랙티브 이벤트 페이지 구현",
-    imageUrl: "/portfolio/event-page.jpg",
-    link: "https://example.com/event-page",
-    tags: ["Next.js", "Supabase", "Tailwind CSS"]
+    id: "landing-page-1",
+    title: "랜딩 페이지 1",
+    description: "전환율 최적화를 위한 반응형 랜딩 페이지 디자인",
+    imageUrl: "/portfolio/landing-page-1.jpg",
+    link: "https://example.com/landing-page-1",
+    tags: ["Next.js", "TailwindCSS", "Framer Motion"]
   },
   {
-    id: "landing-page",
-    title: "랜딩 페이지",
-    description: "전환율 최적화를 위한 반응형 랜딩 페이지 디자인",
-    imageUrl: "/portfolio/landing-page.jpg",
-    link: "https://example.com/landing-page",
-    tags: ["React", "Firebase", "Styled Components"]
+    id: "landing-page-2",
+    title: "랜딩 페이지 2",
+    description: "제품 소개를 위한 인터랙티브 랜딩 페이지",
+    imageUrl: "/portfolio/landing-page-2.jpg",
+    link: "https://example.com/landing-page-2",
+    tags: ["React", "Styled Components", "GSAP"]
+  },
+  {
+    id: "landing-page-3",
+    title: "랜딩 페이지 3",
+    description: "서비스 홍보를 위한 모던한 랜딩 페이지",
+    imageUrl: "/portfolio/landing-page-3.jpg",
+    link: "https://example.com/landing-page-3",
+    tags: ["Next.js", "Chakra UI", "Three.js"]
   },
   {
     id: "analytics-dashboard",
@@ -29,23 +37,7 @@ const portfolioItems = [
     imageUrl: "/portfolio/analytics-dashboard.jpg",
     link: "https://example.com/analytics-dashboard",
     tags: ["Vue.js", "D3.js", "Express"]
-  },
-  {
-    id: "blog-platform",
-    title: "블로그 플랫폼",
-    description: "SEO 최적화된 콘텐츠 관리 시스템과 블로그 플랫폼",
-    imageUrl: "/portfolio/blog-platform.jpg",
-    link: "https://example.com/blog-platform",
-    tags: ["Next.js", "GraphQL", "Prisma"]
-  },
-  {
-    id: "community-board",
-    title: "커뮤니티 게시판",
-    description: "실시간 소통이 가능한 반응형 커뮤니티 게시판",
-    imageUrl: "/portfolio/community-board.jpg",
-    link: "https://example.com/community-board",
-    tags: ["React", "Socket.io", "Node.js"]
-  },
+  }
 ];
 
 // 배경 패턴 요소 제거 (클라이언트 컴포넌트로 이동)
