@@ -7,35 +7,38 @@ import { useState, useEffect, useRef } from "react";
 // 포트폴리오 데이터 확장
 const portfolioItems = [
   {
-    id: "landing-page-1",
-    title: "랜딩 페이지 1",
-    description: "전환율 최적화를 위한 반응형 랜딩 페이지 디자인",
+    id: "premium-landing",
+    title: "프리미엄 랜딩 페이지",
+    fullTitle: "프리미엄 브랜드 랜딩페이지",
+    description: "럭셔리 미니멀리즘을 적용한 고급스러운 브랜드 경험을 제공하는 랜딩페이지입니다. 세련된 타이포그래피와 여백의 미학을 활용하여 브랜드의 프리미엄 가치를 효과적으로 전달합니다.",
     imageUrl: "/portfolio/landing-page-1.jpg",
-    link: "https://example.com/landing-page-1",
+    link: "https://premium-landing-ab3z55jxe-seungbeen-wis-projects.vercel.app/",
     tags: ["Next.js", "TailwindCSS", "Framer Motion"]
   },
   {
-    id: "landing-page-2",
-    title: "랜딩 페이지 2",
-    description: "제품 소개를 위한 인터랙티브 랜딩 페이지",
+    id: "travel-landing",
+    title: "인터랙티브 랜딩 페이지",
+    fullTitle: "월드 트래블러 랜딩페이지",
+    description: "세계 여행 서비스를 소개하는 인터랙티브 랜딩 페이지입니다. 사용자 친화적인 UI와 매력적인 시각적 요소를 통해 여행에 대한 영감을 제공합니다.",
     imageUrl: "/portfolio/landing-page-2.jpg",
-    link: "https://example.com/landing-page-2",
+    link: "https://travel-landing-eosin.vercel.app/",
     tags: ["React", "Styled Components", "GSAP"]
   },
   {
-    id: "landing-page-3",
-    title: "랜딩 페이지 3",
-    description: "서비스 홍보를 위한 모던한 랜딩 페이지",
+    id: "ebook-landing",
+    title: "전자책 소개 랜딩 페이지",
+    fullTitle: "전자책 소개 랜딩페이지",
+    description: "전자책 판매를 위한 모던한 랜딩 페이지입니다. 깔끔한 디자인과 효과적인 콘텐츠 구성으로 제품의 가치를 전달합니다.",
     imageUrl: "/portfolio/landing-page-3.jpg",
-    link: "https://example.com/landing-page-3",
+    link: "https://ebook-landing-drab.vercel.app/",
     tags: ["Next.js", "Chakra UI", "Three.js"]
   },
   {
     id: "analytics-dashboard",
     title: "사용자 분석 대시보드",
-    description: "실시간 데이터 시각화 및 사용자 행동 분석 대시보드",
+    description: "실시간 데이터 시각화 및 사용자 행동 분석 대시보드입니다.",
     imageUrl: "/portfolio/analytics-dashboard.jpg",
-    link: "https://example.com/analytics-dashboard",
+    link: "https://ebook-landing-bh81r2n5q-seungbeen-wis-projects.vercel.app/dashboard",
     tags: ["Vue.js", "D3.js", "Express"]
   }
 ];
@@ -484,7 +487,7 @@ export default function Home() {
                     
                     <div className="p-8 md:w-1/2">
                       <h2 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mb-4 pb-2 relative group">
-                        {item.title}
+                        {item.fullTitle || item.title}
                         <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 group-hover:w-full"></span>
                       </h2>
                       
