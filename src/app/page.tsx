@@ -1,14 +1,12 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 
 // 포트폴리오 데이터 확장
 const portfolioItems = [
   {
     id: "premium-landing",
-    title: "프리미엄 랜딩 페이지",
+    title: "프리미엄 랜딩",
     fullTitle: "프리미엄 브랜드 랜딩페이지",
     description: "럭셔리 미니멀리즘을 적용한 고급스러운 브랜드 경험을 제공하는 랜딩페이지입니다. 세련된 타이포그래피와 여백의 미학을 활용하여 브랜드의 프리미엄 가치를 효과적으로 전달합니다.",
     imageUrl: "/portfolio/landing-page-1.jpg",
