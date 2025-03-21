@@ -43,8 +43,15 @@ const portfolioItems = [
   }
 ];
 
-// 배경 패턴 요소 제거 (클라이언트 컴포넌트로 이동)
-// const patternElements = Array(15).fill(0).map((_, i) => ({...}));
+// 패턴 타입 정의
+interface Pattern {
+  id: number;
+  size: number;
+  x: number;
+  y: number;
+  duration: number;
+  delay: number;
+}
 
 // 새로운 CSS 애니메이션을 위한 스타일 추가
 const floatAnimation = `
@@ -57,7 +64,7 @@ const floatAnimation = `
 
 // 배경 패턴 컴포넌트 - 클라이언트에서만 렌더링
 function BackgroundPattern({ isDarkMode }: { isDarkMode: boolean }) {
-  const [patterns, setPatterns] = useState<any[]>([]);
+  const [patterns, setPatterns] = useState<Pattern[]>([]); // any 대신 Pattern[] 사용
   
   useEffect(() => {
     // 클라이언트에서만 패턴 생성
