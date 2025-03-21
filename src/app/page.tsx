@@ -1,12 +1,13 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 
 // 포트폴리오 데이터 확장
 const portfolioItems = [
   {
     id: "premium-landing",
-    title: "프리미엄 랜딩",
+    title: "프리미엄 랜딩 페이지",
     fullTitle: "프리미엄 브랜드 랜딩페이지",
     description: "럭셔리 미니멀리즘을 적용한 고급스러운 브랜드 경험을 제공하는 랜딩페이지입니다. 세련된 타이포그래피와 여백의 미학을 활용하여 브랜드의 프리미엄 가치를 효과적으로 전달합니다.",
     imageUrl: "/portfolio/landing-page-1.jpg",
@@ -16,7 +17,7 @@ const portfolioItems = [
   {
     id: "travel-landing",
     title: "인터랙티브 랜딩 페이지",
-    fullTitle: "월드 트래블러 랜딩페이지",
+    fullTitle: "인터랙티브 스토리텔링 랜딩페이지",
     description: "세계 여행 서비스를 소개하는 인터랙티브 랜딩 페이지입니다. 사용자 친화적인 UI와 매력적인 시각적 요소를 통해 여행에 대한 영감을 제공합니다.",
     imageUrl: "/portfolio/landing-page-2.jpg",
     link: "https://travel-landing-eosin.vercel.app/",
@@ -467,27 +468,21 @@ export default function Home() {
                 >
                   <div className={`${expandedCard === item.id ? 'block' : 'md:flex'}`}>
                     <div className={`${expandedCard === item.id ? 'w-full h-80' : 'md:w-1/2'} relative h-64 md:h-auto overflow-hidden group`}>
-                      {/* 스켈레톤 UI */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 animate-pulse"></div>
+                      {/* 이미지 로딩 실패시 보여줄 백업 UI */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 animate-pulse" />
                       
-                      {/* 이미지 컨테이너 */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 flex items-center justify-center transition-transform duration-700 group-hover:scale-110">
-                        <p className="text-gray-500 dark:text-gray-400 relative z-10">이미지 준비 중</p>
-                      </div>
-                      
-                      {/* 실제 이미지가 있을 경우 아래 코드 사용 */}
-                      {/* <Image
+                      {/* 실제 이미지 */}
+                      <Image
                         src={item.imageUrl}
                         alt={item.title}
-                        layout="fill"
-                        objectFit="cover"
-                        className="transition-transform duration-700 group-hover:scale-110 filter hover:brightness-110"
-                      /> */}
-                      
-                      {/* 이미지 오버레이 */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                        <p className="text-white text-sm font-light">자세히 보려면 클릭하세요</p>
-                      </div>
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                        }}
+                      />
                     </div>
                     
                     <div className="p-8 md:w-1/2">
