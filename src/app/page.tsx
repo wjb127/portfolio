@@ -16,7 +16,7 @@ const portfolioItems = [
   },
   {
     id: "travel-landing",
-    title: "스토리텔링형 랜딩 페이지",
+    title: "스토리텔링 랜딩 페이지",
     fullTitle: "인터랙티브 스토리텔링 랜딩페이지",
     description: "Three.js를 활용한 몰입감 있는 3D 그래픽과 GSAP 애니메이션으로 구현된 인터랙티브 스토리텔링 경험을 제공합니다. Framer Motion을 통한 부드러운 전환 효과로 사용자 경험을 극대화했습니다.",
     imageUrl: "/portfolio/landing-page-2.jpg",
