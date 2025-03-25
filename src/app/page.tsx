@@ -98,17 +98,6 @@ function BackgroundPattern({ isDarkMode }: { isDarkMode: boolean }) {
   );
 }
 
-// 클립보드에 이메일 주소 복사 기능
-const copyEmailToClipboard = async () => {
-  try {
-    await navigator.clipboard.writeText('wjb127@naver.com');
-    // 선택적: 복사 성공 알림
-    alert('이메일 주소가 클립보드에 복사되었습니다.');
-  } catch (err) {
-    console.error('클립보드 복사 실패:', err);
-  }
-};
-
 export default function Home() {
   // 스크롤 기능 구현
   const scrollToSection = (id: string) => {
