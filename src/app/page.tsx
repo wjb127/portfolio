@@ -8,37 +8,38 @@ const portfolioItems = [
   {
     id: "premium-landing",
     title: "프리미엄 랜딩 페이지",
-    fullTitle: "프리미엄 브랜드 랜딩페이지",
-    description: "럭셔리 미니멀리즘을 적용한 고급스러운 브랜드 경험을 제공하는 랜딩페이지입니다. 세련된 타이포그래피와 여백의 미학을 활용하여 브랜드의 프리미엄 가치를 효과적으로 전달합니다.",
+    fullTitle: "럭셔리 브랜드 프리미엄 랜딩페이지",
+    description: "럭셔리 미니멀리즘을 적용한 고급스러운 브랜드 경험을 제공하는 랜딩페이지입니다. GSAP 애니메이션과 세련된 타이포그래피로 프리미엄 브랜드 가치를 효과적으로 전달합니다.",
     imageUrl: "/portfolio/landing-page-1.jpg",
     link: "https://premium-landing-ab3z55jxe-seungbeen-wis-projects.vercel.app/",
-    tags: ["Next.js", "TailwindCSS", "Framer Motion"]
+    tags: ["Next.js", "GSAP", "ScrollTrigger", "Google Fonts"]
   },
   {
     id: "travel-landing",
-    title: "인터랙티브 랜딩 페이지",
+    title: "스토리텔링형 랜딩 페이지",
     fullTitle: "인터랙티브 스토리텔링 랜딩페이지",
-    description: "세계 여행 서비스를 소개하는 인터랙티브 랜딩 페이지입니다. 사용자 친화적인 UI와 매력적인 시각적 요소를 통해 여행에 대한 영감을 제공합니다.",
+    description: "Three.js를 활용한 몰입감 있는 3D 그래픽과 GSAP 애니메이션으로 구현된 인터랙티브 스토리텔링 경험을 제공합니다. Framer Motion을 통한 부드러운 전환 효과로 사용자 경험을 극대화했습니다.",
     imageUrl: "/portfolio/landing-page-2.jpg",
     link: "https://travel-landing-eosin.vercel.app/",
-    tags: ["React", "Styled Components", "GSAP"]
+    tags: ["Next.js", "Three.js", "GSAP", "Framer Motion"]
   },
   {
-    id: "ebook-landing",
-    title: "전자책 소개 랜딩 페이지",
-    fullTitle: "전자책 소개 랜딩페이지",
-    description: "전자책 판매를 위한 모던한 랜딩 페이지입니다. 깔끔한 디자인과 효과적인 콘텐츠 구성으로 제품의 가치를 전달합니다.",
+    id: "sales-funnel",
+    title: "세일즈퍼널 랜딩 페이지",
+    fullTitle: "고성능 세일즈퍼널 랜딩페이지",
+    description: "Next.js와 GSAP의 ScrollTrigger를 통한 인터랙티브한 스크롤 경험을 제공합니다. Tailwind CSS로 세련된 디자인을 구현했습니다.",
     imageUrl: "/portfolio/landing-page-3.jpg",
     link: "https://ebook-landing-drab.vercel.app/",
-    tags: ["Next.js", "Chakra UI", "Three.js"]
+    tags: ["Next.js", "GSAP", "ScrollTrigger", "Tailwind CSS"]
   },
   {
     id: "analytics-dashboard",
     title: "사용자 분석 대시보드",
-    description: "실시간 데이터 시각화 및 사용자 행동 분석 대시보드입니다.",
+    fullTitle: "실시간 사용자 분석 대시보드",
+    description: "Next.js와 Supabase를 활용한 풀스택 대시보드 솔루션입니다. Tailwind CSS의 고급 기능을 활용하여 반응형 레이아웃과 다크모드를 구현했으며, 실시간 데이터 시각화를 제공합니다.",
     imageUrl: "/portfolio/analytics-dashboard.jpg",
     link: "https://ebook-landing-bh81r2n5q-seungbeen-wis-projects.vercel.app/dashboard",
-    tags: ["Vue.js", "D3.js", "Express"]
+    tags: ["Next.js", "Supabase", "Tailwind CSS", "Real-time Data"]
   }
 ];
 
