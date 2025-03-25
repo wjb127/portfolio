@@ -16,7 +16,7 @@ const portfolioItems = [
   },
   {
     id: "travel-landing",
-    title: "다이나믹 랜딩페이지",
+    title: "인터랙티브 랜딩페이지",
     fullTitle: "인터랙티브 스토리텔링 랜딩페이지",
     description: "Three.js를 활용한 몰입감 있는 3D 그래픽과 GSAP 애니메이션으로 구현된 인터랙티브 스토리텔링 경험을 제공합니다. Framer Motion을 통한 부드러운 전환 효과로 사용자 경험을 극대화했습니다.",
     imageUrl: "/portfolio/landing-page-2.jpg",
@@ -97,6 +97,17 @@ function BackgroundPattern({ isDarkMode }: { isDarkMode: boolean }) {
     </div>
   );
 }
+
+// 클립보드에 이메일 주소 복사 기능
+const copyEmailToClipboard = async () => {
+  try {
+    await navigator.clipboard.writeText('wjb127@naver.com');
+    // 선택적: 복사 성공 알림
+    alert('이메일 주소가 클립보드에 복사되었습니다.');
+  } catch (err) {
+    console.error('클립보드 복사 실패:', err);
+  }
+};
 
 export default function Home() {
   // 스크롤 기능 구현
@@ -350,16 +361,30 @@ export default function Home() {
               <p className="text-sm text-gray-600 dark:text-gray-400 font-light leading-relaxed">
                 Next.js, Vercel, Supabase를 활용한 웹 개발 서비스를 제공합니다.
               </p>
-              <div className="mt-4 flex space-x-3">
+              <div className="mt-4 flex flex-col space-y-4">
+                {/* GitHub 링크 */}
                 <a 
                   href="https://github.com/wjb127" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 transform hover:scale-110"
+                  className="flex items-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
                   </svg>
+                  <span className="ml-2 text-sm font-light">GitHub</span>
+                </a>
+
+                {/* 이메일 링크 */}
+                <a 
+                  href="mailto:wjb127@naver.com" 
+                  className="flex items-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                  </svg>
+                  <span className="ml-2 text-sm font-light">wjb127@naver.com</span>
                 </a>
               </div>
             </div>
@@ -406,7 +431,7 @@ export default function Home() {
         } snap-y snap-mandatory`}>
           {/* 헤더 섹션 */}
           <section className="h-screen flex flex-col items-center justify-center px-8 snap-start relative overflow-hidden">
-            <div className="text-center z-10 animate-on-scroll">
+            <div className="text-center z-10 animate-on-scroll mb-24">
               <h1 className="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 tracking-tight leading-tight mb-4">
                 웹 개발 포트폴리오
               </h1>
@@ -415,31 +440,28 @@ export default function Home() {
                 Next.js와 Supabase를 활용한 풀스택 웹 개발 서비스를 제공합니다.
                 크몽에서 다양한 웹 개발 프로젝트를 진행하고 있습니다.
               </p>
-              
-              <div className="mt-10">
-                <button
-                  onClick={() => scrollToSection(portfolioItems[0].id)}
-                  className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full shadow-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-105 active:scale-95 font-medium group"
-                >
-                  프로젝트 보기
-                  <svg className="w-5 h-5 ml-2 inline-block transition-transform duration-300 group-hover:translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                  </svg>
-                </button>
-              </div>
             </div>
-            
+
+            {/* 스크롤 다운 버튼 - 위치 조정 */}
+            <button
+              onClick={() => scrollToSection(portfolioItems[0].id)}
+              className="absolute bottom-36 left-1/2 transform -translate-x-1/2 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full shadow-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-300 flex items-center space-x-2 group"
+            >
+              <span>프로젝트 보기</span>
+              <svg 
+                className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-y-1" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </button>
+
             {/* 3D 효과 배경 요소 */}
             <div className="absolute inset-0 -z-10">
               <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-blue-500/10 dark:bg-blue-500/20 blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
               <div className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full bg-purple-500/10 dark:bg-purple-500/20 blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
-            </div>
-            
-            {/* 스크롤 유도 아이콘 */}
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-              <svg className="w-6 h-6 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-              </svg>
             </div>
           </section>
 
@@ -450,9 +472,7 @@ export default function Home() {
                 key={item.id} 
                 id={item.id} 
                 ref={(el) => { sectionRefs.current[index] = el; }}
-                className={`scroll-mt-20 snap-start min-h-[80vh] flex items-center ${
-                  index % 2 === 0 ? 'justify-start' : 'justify-end'
-                }`}
+                className="scroll-mt-20 snap-start min-h-[80vh] flex items-center relative"
               >
                 <div 
                   className={`w-full max-w-5xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden animate-on-scroll transition-all duration-500 ${
@@ -505,7 +525,7 @@ export default function Home() {
                           </p>
                           <ul className="list-disc pl-5 space-y-2">
                             <li>사용자 중심 UI/UX 디자인</li>
-                            <li>SEO 최적화 및 성능 개선</li>
+                            <li>신속한 구현 및 배포</li>
                             <li>데이터 시각화 및 분석 기능</li>
                           </ul>
                         </div>
@@ -562,12 +582,48 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
+
+                {/* 스크롤 다운 버튼 (마지막 아이템 제외) */}
+                {index < portfolioItems.length - 1 && (
+                  <button
+                    onClick={() => scrollToSection(portfolioItems[index + 1].id)}
+                    className="absolute bottom-20 left-1/2 transform -translate-x-1/2 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full shadow-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-300 flex items-center space-x-2 group"
+                  >
+                    <span>다음 프로젝트</span>
+                    <svg 
+                      className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-y-1" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                    </svg>
+                  </button>
+                )}
+
+                {/* 마지막 아이템에는 푸터로 이동하는 버튼 */}
+                {index === portfolioItems.length - 1 && (
+                  <button
+                    onClick={() => scrollToSection('footer')}
+                    className="absolute bottom-20 left-1/2 transform -translate-x-1/2 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full shadow-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-300 flex items-center space-x-2 group"
+                  >
+                    <span>연락하기</span>
+                    <svg 
+                      className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-y-1" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                    </svg>
+                  </button>
+                )}
               </section>
             ))}
           </div>
 
           {/* 푸터 */}
-          <footer className="py-20 border-t border-gray-200 dark:border-gray-700 text-center text-gray-600 dark:text-gray-400 animate-on-scroll snap-start">
+          <footer id="footer" className="py-20 border-t border-gray-200 dark:border-gray-700 text-center text-gray-600 dark:text-gray-400 animate-on-scroll snap-start">
             <div className="max-w-4xl mx-auto px-8">
               <div className="mb-8">
                 <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mb-4">
@@ -579,27 +635,35 @@ export default function Home() {
                 </p>
               </div>
               
-              <div className="flex justify-center space-x-6 mb-8">
-                <a href="mailto:contact@example.com" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 transform hover:scale-110">
+              <div className="flex justify-center space-x-8 mb-8">
+                {/* 이메일 링크 */}
+                <a 
+                  href="mailto:wjb127@naver.com" 
+                  className="flex items-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 group"
+                >
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
                   </svg>
+                  <span className="ml-2 font-light">이메일: wjb127@naver.com</span>
                 </a>
+
+                {/* GitHub 링크 */}
                 <a 
                   href="https://github.com/wjb127" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 transform hover:scale-110"
+                  className="flex items-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 group"
                 >
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
                   </svg>
+                  <span className="ml-2 font-light">GitHub</span>
                 </a>
               </div>
               
               <div className="pt-8 border-t border-gray-200 dark:border-gray-700">
-                <p className="font-light">© 2023 웹 개발 포트폴리오. All rights reserved.</p>
+                <p className="font-light">© 2025 웹 개발 포트폴리오. All rights reserved.</p>
                 <p className="mt-2 text-sm tracking-wide">Next.js, Vercel, Supabase로 구현되었습니다.</p>
                 
                 {/* 개인 서명 */}
