@@ -113,9 +113,6 @@ export default function Home() {
   // 네비게이션 표시 상태
   const [isNavVisible, setIsNavVisible] = useState(true);
   
-  // 다크모드 상태
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  
   // 확장된 카드 상태
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
   
@@ -137,22 +134,6 @@ export default function Home() {
   // 네비게이션 토글 함수
   const toggleNav = () => {
     setIsNavVisible(!isNavVisible);
-  };
-  
-  // 다크모드 토글 함수
-  const toggleDarkMode = () => {
-    const newDarkMode = !isDarkMode;
-    setIsDarkMode(newDarkMode);
-    
-    // HTML 요소에 다크모드 클래스 추가/제거
-    if (newDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-    
-    // 로컬 스토리지에 설정 저장
-    localStorage.setItem('darkMode', newDarkMode ? 'true' : 'false');
   };
   
   // 카드 확장 토글 함수
@@ -233,25 +214,6 @@ export default function Home() {
     };
   }, []);
   
-  // 다크모드 초기 설정
-  useEffect(() => {
-    // 로컬 스토리지에서 다크모드 설정 확인
-    const savedDarkMode = localStorage.getItem('darkMode');
-    
-    // 저장된 설정이 있으면 그 설정 사용, 없으면 시스템 설정 사용
-    const prefersDark = savedDarkMode 
-      ? savedDarkMode === 'true'
-      : window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
-    setIsDarkMode(prefersDark);
-    
-    if (prefersDark) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, []);
-  
   // 페이지 로딩 효과
   useEffect(() => {
     // 페이지 로딩 시뮬레이션
@@ -292,10 +254,10 @@ export default function Home() {
       )}
       
       {/* 배경 패턴 - 클라이언트 컴포넌트로 교체 */}
-      {!isLoading && <BackgroundPattern isDarkMode={isDarkMode} />}
+      {!isLoading && <BackgroundPattern isDarkMode={false} />}
       
       {/* 스크롤 진행 표시기 */}
-      <div className="fixed top-0 left-0 w-full h-1 z-50 bg-gray-200 dark:bg-gray-700">
+      <div className="fixed top-0 left-0 w-full h-1 z-50 bg-gray-200">
         <div 
           className="h-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300"
           style={{ width: `${scrollProgress}%` }}
@@ -303,7 +265,7 @@ export default function Home() {
       </div>
       
       <div className={`flex min-h-screen font-sans transition-colors duration-300 ${
-        isDarkMode ? 'dark bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900' : 'bg-gradient-to-br from-blue-50 via-white to-purple-50'
+        false ? 'dark bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900' : 'bg-gradient-to-br from-blue-50 via-white to-purple-50'
       }`}>
         {/* 왼쪽 네비게이션 */}
         <nav className={`fixed w-64 h-screen bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-lg dark:shadow-gray-900/30 p-6 overflow-auto transition-all duration-300 ease-in-out ${
@@ -329,15 +291,15 @@ export default function Home() {
                     onClick={() => scrollToSection(item.id)}
                     className={`w-full text-left px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 ${
                       activeSection === item.id
-                        ? "text-blue-600 dark:text-blue-400 font-medium"
-                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                        ? "text-blue-600 font-medium"
+                        : "text-gray-700 hover:bg-gray-100"
                     }`}
                   >
                     <div className="flex items-center">
                       <span className={`w-2 h-2 rounded-full mr-2 ${
                         activeSection === item.id 
                           ? "bg-gradient-to-r from-blue-500 to-purple-500" 
-                          : "bg-gray-300 dark:bg-gray-600"
+                          : "bg-gray-300"
                       }`}></span>
                       {item.title}
                     </div>
@@ -347,14 +309,14 @@ export default function Home() {
             </ul>
             
             {/* 소셜 링크 */}
-            <div className="mt-10 pt-6 border-t border-gray-200 dark:border-gray-700">
+            <div className="mt-10 pt-6 border-t border-gray-200">
               <div className="mt-4 flex flex-col space-y-4">
                 {/* GitHub 링크 */}
                 <a 
                   href="https://github.com/wjb127" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="flex items-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
+                  className="flex items-center text-gray-600 hover:text-blue-600 transition-colors duration-300"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
@@ -365,7 +327,7 @@ export default function Home() {
                 {/* 이메일 링크 */}
                 <a 
                   href="mailto:wjb127@naver.com" 
-                  className="flex items-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
+                  className="flex items-center text-gray-600 hover:text-blue-600 transition-colors duration-300"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
@@ -394,23 +356,6 @@ export default function Home() {
             </svg>
           )}
         </button>
-        
-        {/* 다크모드 토글 버튼 */}
-        <button
-          onClick={toggleDarkMode}
-          className="fixed top-4 right-4 z-50 p-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full shadow-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-110 active:scale-95 flex items-center justify-center"
-          aria-label={isDarkMode ? "라이트 모드로 전환" : "다크 모드로 전환"}
-        >
-          {isDarkMode ? (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-            </svg>
-          ) : (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-            </svg>
-          )}
-        </button>
 
         {/* 메인 콘텐츠 */}
         <main className={`w-full transition-all duration-300 ease-in-out ${
@@ -425,24 +370,24 @@ export default function Home() {
               
               {/* 핵심 메시지 3줄 */}
               <div className="space-y-6 mb-8">
-                <p className="text-2xl md:text-3xl text-gray-800 dark:text-gray-200 font-bold">
+                <p className="text-2xl md:text-3xl text-gray-800 font-bold">
                   결과물 먼저 보고 결제하세요
-                  <span className="text-blue-600 dark:text-blue-400"> - 100% 환불 보장</span>
+                  <span className="text-blue-600"> - 100% 환불 보장</span>
                 </p>
                 
-                <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300">
+                <p className="text-xl md:text-2xl text-gray-700">
                   3일 만에 확인하는 웹사이트 결과물
                 </p>
                 
-                <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 font-semibold">
-                  사업 아이디어, 먼저 테스트하고 시작하세요
+                <p className="text-xl md:text-2xl text-gray-600 font-semibold">
+                  사업 아이디어, 랜딩페이지로 테스트하고 시작하세요
                 </p>
               </div>
 
               {/* 추가 설명 - 크기와 굵기 증가 */}
-              <p className="mt-8 text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-medium leading-relaxed">
-                MVP 테스트부터 실제 서비스까지, <br/>
-                개발자 없이도 가능한 웹 개발 서비스를 제공합니다
+              <p className="mt-8 text-lg md:text-xl text-gray-700 max-w-2xl mx-auto font-medium leading-relaxed">
+                랜딩페이지부터 데이터 대시보드까지, <br/>
+                개발자 고용 없이 시작하는 웹 서비스
               </p>
             </div>
 
@@ -479,7 +424,7 @@ export default function Home() {
                 className="scroll-mt-20 snap-start min-h-[80vh] flex items-center relative"
               >
                 <div 
-                  className={`w-full max-w-5xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden animate-on-scroll transition-all duration-500 ${
+                  className={`w-full max-w-5xl bg-white/80 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden animate-on-scroll transition-all duration-500 ${
                     expandedCard === item.id 
                       ? 'scale-105 shadow-2xl z-20' 
                       : hoveredCard === item.id 
@@ -494,7 +439,7 @@ export default function Home() {
                   <div className={`${expandedCard === item.id ? 'block' : 'md:flex'}`}>
                     <div className={`${expandedCard === item.id ? 'w-full h-80' : 'md:w-1/2'} relative h-64 md:h-auto overflow-hidden group`}>
                       {/* 이미지 로딩 실패시 보여줄 백업 UI */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 animate-pulse" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse" />
                       
                       {/* 실제 이미지 */}
                       <Image
@@ -511,18 +456,18 @@ export default function Home() {
                     </div>
                     
                     <div className="p-8 md:w-1/2">
-                      <h2 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mb-4 pb-2 relative group">
+                      <h2 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-4 pb-2 relative group">
                         {item.fullTitle || item.title}
                         <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 group-hover:w-full"></span>
                       </h2>
                       
-                      <p className="text-gray-600 dark:text-gray-300 mb-6 font-light leading-relaxed">
+                      <p className="text-gray-600 mb-6 font-light leading-relaxed">
                         {item.description}
                       </p>
                       
                       {/* 확장된 카드일 때만 보이는 추가 정보 */}
                       {expandedCard === item.id && (
-                        <div className="mb-6 text-gray-600 dark:text-gray-300 font-light animate-fadeIn">
+                        <div className="mb-6 text-gray-600 font-light animate-fadeIn">
                           <p className="mb-4">
                             이 프로젝트는 사용자 경험을 최우선으로 고려하여 개발되었습니다. 
                             반응형 디자인과 최적화된 성능으로 모든 디바이스에서 원활하게 작동합니다.
@@ -539,7 +484,7 @@ export default function Home() {
                         {item.tags.map((tag, tagIndex) => (
                           <span 
                             key={tag} 
-                            className="px-3 py-1 bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-900 dark:to-blue-800 text-blue-800 dark:text-blue-200 text-sm rounded-full font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-md"
+                            className="px-3 py-1 bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 text-sm rounded-full font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-md"
                             style={{ transitionDelay: `${tagIndex * 50}ms` }}
                           >
                             {tag}
@@ -552,7 +497,7 @@ export default function Home() {
                           href={item.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 font-medium group"
+                          className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 font-medium group"
                           onClick={(e) => e.stopPropagation()}
                         >
                           프로젝트 보기
@@ -567,7 +512,7 @@ export default function Home() {
                               e.stopPropagation();
                               setExpandedCard(null);
                             }}
-                            className="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-700 font-medium"
+                            className="inline-flex items-center px-4 py-2 border border-gray-300 text-gray-700 rounded-lg transition-all duration-300 hover:bg-gray-100 font-medium"
                           >
                             접기
                           </button>
@@ -577,7 +522,7 @@ export default function Home() {
                               e.stopPropagation();
                               setExpandedCard(item.id);
                             }}
-                            className="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-700 font-medium"
+                            className="inline-flex items-center px-4 py-2 border border-gray-300 text-gray-700 rounded-lg transition-all duration-300 hover:bg-gray-100 font-medium"
                           >
                             더 보기
                           </button>
@@ -627,13 +572,13 @@ export default function Home() {
           </div>
 
           {/* 푸터 */}
-          <footer id="footer" className="py-20 border-t border-gray-200 dark:border-gray-700 text-center text-gray-600 dark:text-gray-400 animate-on-scroll snap-start">
+          <footer id="footer" className="py-20 border-t border-gray-200 text-center text-gray-600 animate-on-scroll snap-start">
             <div className="max-w-4xl mx-auto px-8">
               <div className="mb-8">
-                <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mb-4">
+                <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-4">
                   웹사이트 개발이 필요하신가요?
                 </h2>
-                <p className="text-gray-700 dark:text-gray-200 font-medium text-lg max-w-xl mx-auto">
+                <p className="text-gray-700 font-medium text-lg max-w-xl mx-auto">
                   MVP 테스트부터 실제 서비스까지, <br/>
                   안전하고 빠른 웹 개발 외주 서비스를 제공해드립니다.
                 </p>
@@ -642,7 +587,7 @@ export default function Home() {
               <div className="flex justify-center space-x-8 mb-8">
                 <a 
                   href="mailto:wjb127@naver.com" 
-                  className="flex items-center text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 group font-medium text-lg"
+                  className="flex items-center text-gray-700 hover:text-blue-600 transition-colors duration-300 group font-medium text-lg"
                 >
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
@@ -655,7 +600,7 @@ export default function Home() {
                   href="https://github.com/wjb127" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="flex items-center text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 group font-medium text-lg"
+                  className="flex items-center text-gray-700 hover:text-blue-600 transition-colors duration-300 group font-medium text-lg"
                 >
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
@@ -664,13 +609,13 @@ export default function Home() {
                 </a>
               </div>
               
-              <div className="pt-8 border-t border-gray-200 dark:border-gray-700">
+              <div className="pt-8 border-t border-gray-200">
                 <p className="font-light">© 2025 웹 개발 포트폴리오. All rights reserved.</p>
                 <p className="mt-2 text-sm tracking-wide">Next.js, Vercel, Supabase로 구현되었습니다.</p>
                 
                 {/* 개인 서명 */}
                 <div className="mt-6 inline-block">
-                  <svg width="80" height="30" viewBox="0 0 80 30" className="text-gray-400 dark:text-gray-600">
+                  <svg width="80" height="30" viewBox="0 0 80 30" className="text-gray-400">
                     <path d="M10,15 Q20,5 30,15 T50,15 T70,15" fill="none" stroke="currentColor" strokeWidth="2" />
                   </svg>
                 </div>
