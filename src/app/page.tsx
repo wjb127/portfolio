@@ -64,10 +64,9 @@ const floatAnimation = `
 
 // 배경 패턴 컴포넌트 - 클라이언트에서만 렌더링
 function BackgroundPattern({ isDarkMode }: { isDarkMode: boolean }) {
-  const [patterns, setPatterns] = useState<Pattern[]>([]); // any 대신 Pattern[] 사용
+  const [patterns, setPatterns] = useState<Pattern[]>([]);
   
   useEffect(() => {
-    // 클라이언트에서만 패턴 생성
     const newPatterns = Array(15).fill(0).map((_, i) => ({
       id: i,
       size: Math.random() * 30 + 10,
@@ -84,7 +83,7 @@ function BackgroundPattern({ isDarkMode }: { isDarkMode: boolean }) {
       {patterns.map((el) => (
         <div
           key={el.id}
-          className={`absolute rounded-full ${isDarkMode ? 'bg-blue-500/10' : 'bg-purple-500/10'}`}
+          className={`absolute rounded-full ${isDarkMode ? 'bg-blue-900/10' : 'bg-blue-800/10'}`}
           style={{
             width: `${el.size}px`,
             height: `${el.size}px`,
@@ -373,7 +372,7 @@ export default function Home() {
         {/* 네비게이션 토글 버튼 - 스타일 수정 */}
         <button 
           onClick={toggleNav}
-          className="fixed top-4 left-4 z-[60] p-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full shadow-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-110 active:scale-95 flex items-center justify-center"
+          className="fixed top-4 left-4 z-[60] p-2 bg-gradient-to-r from-blue-800 to-blue-950 text-white rounded-full shadow-lg hover:from-blue-900 hover:to-blue-950 transition-all duration-300 transform hover:scale-110 active:scale-95 flex items-center justify-center"
           aria-label={isNavVisible ? "네비게이션 숨기기" : "네비게이션 보이기"}
         >
           {isNavVisible ? (
@@ -405,7 +404,7 @@ export default function Home() {
                 />
               </div>
               
-              <h1 className="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 tracking-tight leading-tight mb-8">
+              <h1 className="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-800 to-blue-950 dark:from-blue-700 dark:to-blue-900 tracking-tight leading-tight mb-8">
                 웹개발 외주 맡기기 불안하신가요?
               </h1>
               
@@ -431,7 +430,7 @@ export default function Home() {
             {/* 스크롤 다운 버튼 - 위치 조정 */}
             <button
               onClick={() => scrollToSection(portfolioItems[0].id)}
-              className="absolute bottom-24 md:bottom-28 left-1/2 transform -translate-x-1/2 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full shadow-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-300 flex items-center space-x-2 group"
+              className="absolute bottom-24 md:bottom-28 left-1/2 transform -translate-x-1/2 px-6 py-3 bg-gradient-to-r from-blue-800 to-blue-950 text-white rounded-full shadow-lg hover:from-blue-900 hover:to-blue-950 transition-all duration-300 flex items-center space-x-2 group"
             >
               <span>샘플 보기</span>
               <svg 
@@ -446,8 +445,8 @@ export default function Home() {
 
             {/* 3D 효과 배경 요소 */}
             <div className="absolute inset-0 -z-10">
-              <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-blue-500/10 dark:bg-blue-500/20 blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
-              <div className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full bg-purple-500/10 dark:bg-purple-500/20 blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
+              <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-blue-800/10 dark:bg-blue-800/20 blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
+              <div className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full bg-blue-900/10 dark:bg-blue-900/20 blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
             </div>
           </section>
 
@@ -493,7 +492,7 @@ export default function Home() {
                     </div>
                     
                     <div className="p-8 md:w-1/2">
-                      <h2 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-4 pb-2 relative group">
+                      <h2 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-800 to-blue-950 mb-4 pb-2 relative group">
                         {item.fullTitle || item.title}
                         <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 group-hover:w-full"></span>
                       </h2>
@@ -522,7 +521,7 @@ export default function Home() {
                           {item.tags.map((tag, tagIndex) => (
                             <span 
                               key={tag} 
-                              className="px-3 py-1 bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 text-sm rounded-full font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-md"
+                              className="px-3 py-1 bg-gradient-to-r from-blue-100 to-blue-200 text-blue-900 text-sm rounded-full font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-md"
                               style={{ transitionDelay: `${tagIndex * 50}ms` }}
                             >
                               {tag}
@@ -536,7 +535,7 @@ export default function Home() {
                           href={item.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 font-medium group"
+                          className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-800 to-blue-950 text-white rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 font-medium group"
                           onClick={(e) => e.stopPropagation()}
                         >
                           프로젝트 보기
@@ -575,7 +574,7 @@ export default function Home() {
                 {index < portfolioItems.length - 1 && (
                   <button
                     onClick={() => scrollToSection(portfolioItems[index + 1].id)}
-                    className="absolute bottom-8 md:bottom-12 left-1/2 transform -translate-x-1/2 px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full shadow-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-300 flex items-center space-x-2 group whitespace-nowrap"
+                    className="absolute bottom-8 md:bottom-12 left-1/2 transform -translate-x-1/2 px-8 py-3 bg-gradient-to-r from-blue-800 to-blue-950 text-white rounded-full shadow-lg hover:from-blue-900 hover:to-blue-950 transition-all duration-300 flex items-center space-x-2 group whitespace-nowrap"
                   >
                     <span>다음 프로젝트</span>
                     <svg 
@@ -593,7 +592,7 @@ export default function Home() {
                 {index === portfolioItems.length - 1 && (
                   <button
                     onClick={() => scrollToSection('contact-section')}
-                    className="absolute bottom-8 md:bottom-12 left-1/2 transform -translate-x-1/2 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full shadow-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-300 flex items-center space-x-2 group"
+                    className="absolute bottom-8 md:bottom-12 left-1/2 transform -translate-x-1/2 px-6 py-3 bg-gradient-to-r from-blue-800 to-blue-950 text-white rounded-full shadow-lg hover:from-blue-900 hover:to-blue-950 transition-all duration-300 flex items-center space-x-2 group"
                   >
                     <span>연락하기</span>
                     <svg 
