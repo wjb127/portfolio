@@ -224,30 +224,12 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
-  // 스크롤 함수를 클라이언트 사이드에서만 실행되도록 수정
-  const scrollToContact = () => {
-    const element = document.getElementById('contact-section');
-    if (element) {
-      window.scrollTo({
-        top: element.offsetTop,
-        behavior: 'smooth'
-      });
-    }
-  };
-
-  // 클라이언트 사이드 렌더링을 위한 상태
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // 모바일 관련 상태들 정리
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768); // md 브레이크포인트
+      setIsMobile(window.innerWidth < 768);
     };
     
     checkMobile();
