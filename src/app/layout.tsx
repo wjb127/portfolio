@@ -1,10 +1,13 @@
 import './globals.css'
 import type { Metadata } from 'next'
 
-export const metadata: Metadata = {
-  title: '개발자 포트폴리오',
-  description: '안전하고 빠른 웹 개발 서비스',
-}
+export const metadata = {
+  title: 'DEV1L Portfolio',
+  description: '웹 개발 포트폴리오',
+  icons: {
+    icon: '/portfolio/logo.jpg',
+  },
+};
 
 export default function RootLayout({
   children,

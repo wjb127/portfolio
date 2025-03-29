@@ -302,10 +302,21 @@ export default function Home() {
         <nav className={`fixed w-64 h-screen bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-lg dark:shadow-gray-900/30 flex flex-col transition-all duration-300 ease-in-out ${
           isNavVisible ? 'translate-x-0' : '-translate-x-full'
         } z-40 px-6 py-8`}>
-          {/* 제목 */}
-          <h1 className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 tracking-tight text-center mb-8">
-            개발자 포트폴리오
-          </h1>
+          {/* 로고 섹션 */}
+          <div className="flex flex-col items-center space-y-4 mb-8">
+            <div className="relative w-32 h-32">
+              <Image
+                src="/portfolio/logo.jpg"
+                alt="DEV1L Logo"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+            <h1 className="text-2xl font-extrabold tracking-tight text-center">
+              개발자 포트폴리오
+            </h1>
+          </div>
           
           {/* 네비게이션 메뉴 */}
           <ul className="space-y-3">
@@ -414,6 +425,17 @@ export default function Home() {
           {/* 헤더 섹션 */}
           <section className="h-screen flex flex-col items-center justify-center px-8 snap-start relative overflow-hidden">
             <div className="text-center z-10 animate-on-scroll mb-24">
+              {/* 로고 추가 */}
+              <div className="relative w-40 h-40 mx-auto mb-8 animate-float">
+                <Image
+                  src="/portfolio/logo.jpg"
+                  alt="DEV1L Logo"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+              
               <h1 className="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 tracking-tight leading-tight mb-8">
                 웹개발 외주 맡기기 불안하신가요?
               </h1>
@@ -693,6 +715,19 @@ export default function Home() {
           </footer>
         </main>
       </div>
+
+      {/* 로고 플로팅 애니메이션 추가 */}
+      <style jsx global>{`
+        @keyframes float {
+          0% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-20px) rotate(5deg); }
+          100% { transform: translateY(0px) rotate(0deg); }
+        }
+        
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+      `}</style>
     </>
   );
 }
