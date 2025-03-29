@@ -111,7 +111,7 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState("");
   
   // 네비게이션 표시 상태
-  const [isNavVisible, setIsNavVisible] = useState(true);
+  const [isNavVisible, setIsNavVisible] = useState(false);
   
   // 확장된 카드 상태
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
@@ -240,6 +240,19 @@ export default function Home() {
 
   useEffect(() => {
     setMounted(true);
+  }, []);
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // md 브레이크포인트
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   return (
@@ -394,7 +407,7 @@ export default function Home() {
 
         {/* 메인 콘텐츠 */}
         <main className={`w-full transition-all duration-300 ease-in-out ${
-          isNavVisible ? 'ml-64' : 'ml-0'
+          isNavVisible ? 'ml-64' : 'mx-auto max-w-5xl'
         } snap-y snap-mandatory`}>
           {/* 헤더 섹션 */}
           <section className="h-screen flex flex-col items-center justify-center px-8 snap-start relative overflow-hidden">
@@ -419,11 +432,7 @@ export default function Home() {
                 </p>
               </div>
 
-              {/* 추가 설명 - 크기와 굵기 증가 */}
-              <p className="mt-8 text-lg md:text-xl text-gray-700 max-w-2xl mx-auto font-medium leading-relaxed">
-                랜딩페이지부터 데이터 대시보드까지, <br/>
-                개발자 고용 없이 시작하는 웹 서비스
-              </p>
+
             </div>
 
             {/* 스크롤 다운 버튼 - 위치 조정 */}
@@ -431,7 +440,7 @@ export default function Home() {
               onClick={() => scrollToSection(portfolioItems[0].id)}
               className="absolute bottom-36 left-1/2 transform -translate-x-1/2 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full shadow-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-300 flex items-center space-x-2 group"
             >
-              <span>샘플 프로젝트 보기</span>
+              <span>샘플 보기</span>
               <svg 
                 className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-y-1" 
                 fill="none" 
@@ -496,13 +505,13 @@ export default function Home() {
                         <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 group-hover:w-full"></span>
                       </h2>
                       
-                      <p className="text-gray-600 mb-6 font-light leading-relaxed">
+                      <p className={`${expandedCard === item.id ? 'block' : 'hidden md:block'} text-gray-600 mb-6 font-light leading-relaxed`}>
                         {item.description}
                       </p>
                       
                       {/* 확장된 카드일 때만 보이는 추가 정보 */}
                       {expandedCard === item.id && (
-                        <div className="mb-6 text-gray-600 font-light animate-fadeIn">
+                        <div className={`${expandedCard === item.id ? 'block' : 'hidden md:block'} mb-6 text-gray-600 font-light animate-fadeIn`}>
                           <p className="mb-4">
                             이 프로젝트는 사용자 경험을 최우선으로 고려하여 개발되었습니다. 
                             반응형 디자인과 최적화된 성능으로 모든 디바이스에서 원활하게 작동합니다.
@@ -516,15 +525,17 @@ export default function Home() {
                       )}
                       
                       <div className="flex flex-wrap gap-2 mb-6">
-                        {item.tags.map((tag, tagIndex) => (
-                          <span 
-                            key={tag} 
-                            className="px-3 py-1 bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 text-sm rounded-full font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-md"
-                            style={{ transitionDelay: `${tagIndex * 50}ms` }}
-                          >
-                            {tag}
-                          </span>
-                        ))}
+                        <div className={`${expandedCard === item.id ? 'block' : 'hidden md:block'}`}>
+                          {item.tags.map((tag, tagIndex) => (
+                            <span 
+                              key={tag} 
+                              className="px-3 py-1 bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 text-sm rounded-full font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-md"
+                              style={{ transitionDelay: `${tagIndex * 50}ms` }}
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                       
                       <div className="flex space-x-3">
@@ -571,7 +582,7 @@ export default function Home() {
                 {index < portfolioItems.length - 1 && (
                   <button
                     onClick={() => scrollToSection(portfolioItems[index + 1].id)}
-                    className="absolute bottom-20 left-1/2 transform -translate-x-1/2 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full shadow-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-300 flex items-center space-x-2 group"
+                    className="absolute bottom-20 left-1/2 transform -translate-x-1/2 px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full shadow-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-300 flex items-center space-x-2 group whitespace-nowrap"
                   >
                     <span>다음 프로젝트</span>
                     <svg 
@@ -613,7 +624,7 @@ export default function Home() {
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
                   웹사이트 개발이 필요하신가요?
                 </h2>
-                <p className="text-xl text-gray-700 font-medium leading-relaxed">
+                <p className="hidden md:block text-xl text-gray-700 font-medium leading-relaxed">
                   랜딩페이지부터 데이터 대시보드까지, <br/>
                   개발자 고용 없이 시작하는 웹 서비스
                 </p>
@@ -674,7 +685,7 @@ export default function Home() {
               </div>
 
               <div className="mt-12 text-center text-gray-600">
-                <p>평일 오후 6시 ~ 오후10시 / 주말 응답 가능</p>
+                <p>평일 오후 6시 ~ 오후10시 / 주말 응답 가능합니다</p>
               </div>
             </div>
           </footer>
