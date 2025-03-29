@@ -283,7 +283,7 @@ export default function Home() {
               />
             </div>
             <h1 className="text-2xl font-extrabold tracking-tight text-center">
-              개발자 포트폴리오
+              데브원엘 포트폴리오
             </h1>
           </div>
           
