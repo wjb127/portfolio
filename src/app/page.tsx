@@ -147,8 +147,11 @@ export default function Home() {
   // 스크롤 이벤트 리스너
   useEffect(() => {
     const handleScroll = () => {
-      // 활성 섹션 추적
-      const sections = [...portfolioItems.map((item) => item.id), 'contact-section'];
+      const sections = [
+        ...portfolioItems.map((item) => item.id),
+        'pricing-section',
+        'contact-section'
+      ];
       
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -170,7 +173,7 @@ export default function Home() {
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // 초기 로드 시 실행
+    handleScroll();
     
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -313,6 +316,30 @@ export default function Home() {
               </li>
             ))}
             
+            {/* 서비스 요금 안내 메뉴 추가 */}
+            <li className="relative">
+              <button
+                onClick={() => {
+                  scrollToSection('pricing-section');
+                  setIsNavVisible(false);
+                }}
+                className={`w-full text-left px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 ${
+                  activeSection === 'pricing-section'
+                    ? "text-blue-800 font-medium"
+                    : "text-gray-700 hover:bg-gray-100"
+                }`}
+              >
+                <div className="flex items-center">
+                  <span className={`w-2 h-2 rounded-full mr-2 ${
+                    activeSection === 'pricing-section'
+                      ? "bg-gradient-to-r from-blue-800 to-blue-950"
+                      : "bg-gray-300"
+                  }`}></span>
+                  서비스 요금
+                </div>
+              </button>
+            </li>
+            
             {/* 연락처 메뉴 */}
             <li className="relative">
               <button
@@ -360,8 +387,7 @@ export default function Home() {
                 className="flex items-center text-gray-600 hover:text-blue-600 transition-colors duration-300"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
-                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                  <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12zM7 9h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/>
                 </svg>
                 <span className="ml-2 text-sm font-light">wjb127@naver.com</span>
               </a>
@@ -570,8 +596,8 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* 스크롤 다운 버튼 (마지막 아이템 제외) */}
-                {index < portfolioItems.length - 1 && (
+                {/* 다음 섹션으로 이동하는 버튼 - 조건문 수정 */}
+                {index < portfolioItems.length - 1 ? (
                   <button
                     onClick={() => scrollToSection(portfolioItems[index + 1].id)}
                     className="absolute bottom-8 md:bottom-12 left-1/2 transform -translate-x-1/2 px-8 py-3 bg-gradient-to-r from-blue-800 to-blue-950 text-white rounded-full shadow-lg hover:from-blue-900 hover:to-blue-950 transition-all duration-300 flex items-center space-x-2 group whitespace-nowrap"
@@ -586,15 +612,13 @@ export default function Home() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                     </svg>
                   </button>
-                )}
-
-                {/* 마지막 아이템의 연락하기 버튼 */}
-                {index === portfolioItems.length - 1 && (
+                ) : (
+                  // 마지막 포트폴리오 아이템의 버튼을 서비스 요금 버튼으로 변경
                   <button
-                    onClick={() => scrollToSection('contact-section')}
-                    className="absolute bottom-8 md:bottom-12 left-1/2 transform -translate-x-1/2 px-6 py-3 bg-gradient-to-r from-blue-800 to-blue-950 text-white rounded-full shadow-lg hover:from-blue-900 hover:to-blue-950 transition-all duration-300 flex items-center space-x-2 group"
+                    onClick={() => scrollToSection('pricing-section')}
+                    className="absolute bottom-8 md:bottom-12 left-1/2 transform -translate-x-1/2 px-8 py-3 bg-gradient-to-r from-blue-800 to-blue-950 text-white rounded-full shadow-lg hover:from-blue-900 hover:to-blue-950 transition-all duration-300 flex items-center space-x-2 group whitespace-nowrap"
                   >
-                    <span>연락하기</span>
+                    <span>서비스 요금 안내</span>
                     <svg 
                       className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-y-1" 
                       fill="none" 
@@ -608,6 +632,158 @@ export default function Home() {
               </section>
             ))}
           </div>
+
+          {/* 포트폴리오 아이템 섹션 다음에 추가 */}
+          <section id="pricing-section" className="py-24 px-8 bg-gradient-to-b from-white to-gray-50 relative">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center space-y-4 mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-800 to-blue-950">
+                  서비스 요금 안내
+                </h2>
+                <p className="text-gray-600">
+                  프로젝트 규모와 필요에 맞는 최적의 요금제를 선택하세요
+                </p>
+              </div>
+
+              <div className="grid gap-8 md:grid-cols-3">
+                {/* 랜딩페이지 요금제 */}
+                <div className="bg-white rounded-2xl shadow-lg p-8 transform hover:scale-[1.02] transition-all duration-300">
+                  <div className="space-y-4">
+                    <div className="h-16 flex items-center justify-center">
+                      <svg className="w-12 h-12 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 text-center">랜딩페이지</h3>
+                    <div className="text-center">
+                      <span className="text-3xl font-bold text-blue-800">99,000</span>
+                      <span className="text-gray-600">원</span>
+                    </div>
+                    <ul className="space-y-3 text-gray-600">
+                      <li className="flex items-center">
+                        <svg className="w-5 h-5 mr-2 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        반응형 디자인
+                      </li>
+                      <li className="flex items-center">
+                        <svg className="w-5 h-5 mr-2 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        3일만에 확인
+                      </li>
+                      <li className="flex items-center">
+                        <svg className="w-5 h-5 mr-2 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        기본 애니메이션 효과
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* 대시보드 요금제 */}
+                <div className="bg-gradient-to-b from-blue-900 to-blue-950 rounded-2xl shadow-lg p-8 transform hover:scale-[1.02] transition-all duration-300 relative">
+                  <div className="absolute top-0 right-0 bg-yellow-400 text-blue-900 text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-2xl">
+                    BEST
+                  </div>
+                  <div className="space-y-4">
+                    <div className="h-16 flex items-center justify-center">
+                      <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-xl font-bold text-white text-center">대시보드</h3>
+                    <div className="text-center text-white">
+                      <span className="text-3xl font-bold">198,000</span>
+                      <span>원</span>
+                      <p className="text-sm text-gray-300 mt-1">+ 유지보수 월 20,000원</p>
+                    </div>
+                    <ul className="space-y-3 text-gray-200">
+                      <li className="flex items-center">
+                        <svg className="w-5 h-5 mr-2 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        실시간 데이터 시각화
+                      </li>
+                      <li className="flex items-center">
+                        <svg className="w-5 h-5 mr-2 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        사용자 관리 기능
+                      </li>
+                      <li className="flex items-center">
+                        <svg className="w-5 h-5 mr-2 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        데이터베이스 연동
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* 소스코드 제공 요금제 카드 수정 */}
+                <div className="bg-white rounded-2xl shadow-lg p-8 transform hover:scale-[1.02] transition-all duration-300">
+                  <div className="space-y-4">
+                    <div className="h-16 flex items-center justify-center">
+                      <svg className="w-12 h-12 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 text-center">소스코드 제공</h3>
+                    <div className="text-center">
+                      <span className="text-3xl font-bold text-blue-800">330,000</span>
+                      <span className="text-gray-600">원</span>
+                      <div className="mt-2 text-sm text-blue-800 font-medium">
+                        일시불, 이후 유지비 없음
+                      </div>
+                    </div>
+                    <ul className="space-y-3 text-gray-600">
+                      <li className="flex items-center">
+                        <svg className="w-5 h-5 mr-2 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        전체 소스코드
+                      </li>
+                      <li className="flex items-center">
+                        <svg className="w-5 h-5 mr-2 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        데이터베이스 스키마
+                      </li>
+                      <li className="flex items-center">
+                        <svg className="w-5 h-5 mr-2 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        기술 문서 제공
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="text-center text-gray-600 mb-16">
+                <p>모든 요금제는 2회 무료 수정을 포함합니다</p>
+                <p className="mt-2 text-sm">* 추가 수정 및 기능 요청은 별도 협의</p>
+              </div>
+            </div>
+
+            {/* 연락하기 버튼 - 위치 조정 */}
+            <button
+              onClick={() => scrollToSection('contact-section')}
+              className="absolute bottom-24 md:bottom-28 left-1/2 transform -translate-x-1/2 px-6 py-3 bg-gradient-to-r from-blue-800 to-blue-950 text-white rounded-full shadow-lg hover:from-blue-900 hover:to-blue-950 transition-all duration-300 flex items-center space-x-2 group"
+            >
+              <span>연락하기</span>
+              <svg 
+                className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-y-1" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </button>
+          </section>
 
           {/* footer 부분만 교체 */}
           <footer id="contact-section" className="py-24 bg-gradient-to-b from-white to-gray-50">
@@ -674,10 +850,6 @@ export default function Home() {
                     <p className="text-gray-600">24시간 이내 답변 드리겠습니다</p>
                   </div>
                 </div>
-              </div>
-
-              <div className="mt-12 text-center text-gray-600">
-                <p>평일 오후 6시 ~ 오후10시 / 주말 응답 가능합니다</p>
               </div>
             </div>
           </footer>
