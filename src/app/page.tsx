@@ -224,19 +224,6 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
-  // 모바일 관련 상태들 정리
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
   return (
     <>
       {/* 스타일 태그 추가 */}
