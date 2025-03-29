@@ -456,7 +456,7 @@ export default function Home() {
             {/* 스크롤 다운 버튼 - 위치 조정 */}
             <button
               onClick={() => scrollToSection(portfolioItems[0].id)}
-              className="absolute bottom-24 md:bottom-28 left-1/2 transform -translate-x-1/2 px-6 py-3 bg-gradient-to-r from-blue-800 to-blue-950 text-white rounded-full shadow-lg hover:from-blue-900 hover:to-blue-950 transition-all duration-300 flex items-center space-x-2 group"
+              className="absolute bottom-16 md:bottom-24 left-1/2 transform -translate-x-1/2 px-6 py-3 bg-gradient-to-r from-blue-800 to-blue-950 text-white rounded-full shadow-lg hover:from-blue-900 hover:to-blue-950 transition-all duration-300 flex items-center space-x-2 group"
             >
               <span>샘플 보기</span>
               <svg 
