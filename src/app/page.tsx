@@ -148,7 +148,7 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       // 활성 섹션 추적
-      const sections = portfolioItems.map((item) => item.id);
+      const sections = [...portfolioItems.map((item) => item.id), 'contact-section'];
       
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -230,7 +230,7 @@ export default function Home() {
       
       {/* 로딩 화면 - 개선된 애니메이션 */}
       {isLoading && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-blue-600 to-purple-600">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-blue-900 to-blue-950">
           <div className="text-white text-4xl font-black relative">
             <div className="flex flex-col items-center">
               <span className="mb-4 relative">
@@ -293,18 +293,18 @@ export default function Home() {
                 <button
                   onClick={() => {
                     scrollToSection(item.id);
-                    setIsNavVisible(false); // 메뉴 클릭시 네비게이션 닫기
+                    setIsNavVisible(false);
                   }}
                   className={`w-full text-left px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 ${
                     activeSection === item.id
-                      ? "text-blue-600 font-medium"
+                      ? "text-blue-800 font-medium"
                       : "text-gray-700 hover:bg-gray-100"
                   }`}
                 >
                   <div className="flex items-center">
                     <span className={`w-2 h-2 rounded-full mr-2 ${
                       activeSection === item.id 
-                        ? "bg-gradient-to-r from-blue-500 to-purple-500" 
+                        ? "bg-gradient-to-r from-blue-800 to-blue-950"
                         : "bg-gray-300"
                     }`}></span>
                     {item.title}
@@ -318,18 +318,18 @@ export default function Home() {
               <button
                 onClick={() => {
                   scrollToSection('contact-section');
-                  setIsNavVisible(false); // 메뉴 클릭시 네비게이션 닫기
+                  setIsNavVisible(false);
                 }}
                 className={`w-full text-left px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 ${
                   activeSection === 'contact-section'
-                    ? "text-blue-600 font-medium"
+                    ? "text-blue-800 font-medium"
                     : "text-gray-700 hover:bg-gray-100"
                 }`}
               >
                 <div className="flex items-center">
                   <span className={`w-2 h-2 rounded-full mr-2 ${
                     activeSection === 'contact-section'
-                      ? "bg-gradient-to-r from-blue-500 to-purple-500" 
+                      ? "bg-gradient-to-r from-blue-800 to-blue-950"
                       : "bg-gray-300"
                   }`}></span>
                   연락처
