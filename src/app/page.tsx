@@ -646,206 +646,107 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 mb-8">
-                {/* 비즈니스 랜딩 패키지 */}
-                <div className="bg-white rounded-2xl shadow-lg p-8 transform hover:scale-[1.02] transition-all duration-300 flex flex-col h-full">
-                  <div className="space-y-4 flex-grow">
-                    <div className="h-16 flex items-center justify-center">
-                      <svg className="w-12 h-12 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+                {/* 심플 웹 패키지 */}
+                <div className="bg-white p-8 rounded-xl shadow-lg">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">심플 웹 패키지</h3>
+                  <p className="text-3xl font-bold text-blue-800 mb-6">99,000원</p>
+                  <p className="text-sm text-gray-500 mb-4">일회성 결제</p>
+                  <ul className="space-y-3 text-gray-600">
+                    <li className="flex items-center">
+                      <svg className="w-5 h-5 mr-2 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
                       </svg>
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 text-center">비즈니스 랜딩 패키지</h3>
-                    <div className="text-center">
-                      <div className="flex items-center justify-center">
-                        <span className="text-gray-500 line-through text-lg mr-2">149,000원</span>
-                        <span className="text-3xl font-bold text-red-600">99,000</span>
-                        <span className="text-gray-600">원</span>
-                      </div>
-                      <p className="mt-1 text-xs text-red-600 font-medium">* 첫 구매 할인 (33% 할인)</p>
-                    </div>
-                    <div className="mt-2 text-center">
-                      <span className="px-3 py-1 bg-red-100 text-red-600 text-xs rounded-full">일시불</span>
-                    </div>
-                    <ul className="space-y-3 text-gray-600">
-                      <li className="flex items-center">
-                        <svg className="w-5 h-5 mr-2 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        3일 이내 빠른 구현
-                      </li>
-                      <li className="flex items-center">
-                        <svg className="w-5 h-5 mr-2 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        모던한 디자인 적용
-                      </li>
-                      <li className="flex items-center">
-                        <svg className="w-5 h-5 mr-2 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        반응형 모바일 지원
-                      </li>
-                      <li className="flex items-center">
-                        <svg className="w-5 h-5 mr-2 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        맞춤형 UI/UX 설계
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="mt-6 pt-6 border-t border-gray-200 text-center">
-                    <p className="text-sm text-gray-500">3일 내 결과물 확인</p>
-                  </div>
+                      3일 이내 빠른 구현
+                    </li>
+                    <li className="flex items-center">
+                      <svg className="w-5 h-5 mr-2 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
+                      </svg>
+                      Next.js 프론트엔드 개발
+                    </li>
+                    <li className="flex items-center">
+                      <svg className="w-5 h-5 mr-2 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
+                      </svg>
+                      Vercel 무료 호스팅
+                    </li>
+                    <li className="flex items-center">
+                      <svg className="w-5 h-5 mr-2 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
+                      </svg>
+                      반응형 모바일 지원
+                    </li>
+                  </ul>
                 </div>
 
-                {/* 비즈니스 인사이트 패키지를 BEST로 처리 */}
-                <div className="bg-gradient-to-b from-blue-900 to-blue-950 rounded-2xl shadow-lg p-8 transform hover:scale-[1.02] transition-all duration-300 flex flex-col h-full relative">
-                  <div className="absolute top-0 right-0 bg-yellow-400 text-blue-900 text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-2xl">
+                {/* DB 연동 패키지 */}
+                <div className="bg-gradient-to-br from-blue-900 to-blue-800 p-8 rounded-xl shadow-lg text-white relative">
+                  <div className="absolute top-4 right-4 bg-yellow-400 text-blue-900 px-3 py-1 rounded-full text-sm font-bold">
                     BEST
                   </div>
-                  <div className="space-y-4 flex-grow">
-                    <div className="h-16 flex items-center justify-center">
-                      <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                  <h3 className="text-xl font-bold mb-4">DB 연동 패키지</h3>
+                  <p className="text-3xl font-bold mb-2">299,000원</p>
+                  <p className="text-sm text-gray-200 mb-4">+ 유지보수 29,000원/월</p>
+                  <ul className="space-y-3">
+                    <li className="flex items-center">
+                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
                       </svg>
-                    </div>
-                    <h3 className="text-xl font-bold text-white text-center">비즈니스 인사이트 패키지</h3>
-                    <div className="text-center text-white">
-                      <span className="text-3xl font-bold">299,000</span>
-                      <span>원</span>
-                      <p className="mt-1 text-sm text-gray-300">+ 유지보수 월 29,000원</p>
-                    </div>
-                    <div className="mt-2 text-center">
-                      <span className="px-3 py-1 bg-yellow-400 text-blue-900 text-xs rounded-full font-bold">데이터 시각화</span>
-                    </div>
-                    <ul className="space-y-3 text-gray-200">
-                      <li className="flex items-center">
-                        <svg className="w-5 h-5 mr-2 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        랜딩페이지 포함
-                      </li>
-                      <li className="flex items-center">
-                        <svg className="w-5 h-5 mr-2 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        사용자 관리 기능
-                      </li>
-                      <li className="flex items-center">
-                        <svg className="w-5 h-5 mr-2 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        데이터 시각화
-                      </li>
-                      <li className="flex items-center">
-                        <svg className="w-5 h-5 mr-2 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        기본 백엔드 기능
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="mt-6 pt-6 border-t border-blue-800 text-center">
-                    <p className="text-sm text-gray-300">1주일 내 결과물 확인</p>
-                  </div>
+                      심플 랜딩 패키지의 모든 기능
+                    </li>
+                    <li className="flex items-center">
+                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
+                      </svg>
+                      Supabase DB 연동
+                    </li>
+                    <li className="flex items-center">
+                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
+                      </svg>
+                      데이터 수집/저장 기능
+                    </li>
+                    <li className="flex items-center">
+                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
+                      </svg>
+                      첫 달 유지보수 무료
+                    </li>
+                  </ul>
                 </div>
 
-                {/* 엔터프라이즈 호스팅 패키지는 BEST 제거하고 일반 스타일로 변경 */}
-                <div className="bg-white rounded-2xl shadow-lg p-8 transform hover:scale-[1.02] transition-all duration-300 flex flex-col h-full">
-                  <div className="space-y-4 flex-grow">
-                    <div className="h-16 flex items-center justify-center">
-                      <svg className="w-12 h-12 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                {/* 풀스택 비즈니스 패키지 */}
+                <div className="bg-white p-8 rounded-xl shadow-lg">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">풀스택 비즈니스 패키지</h3>
+                  <p className="text-3xl font-bold text-blue-800 mb-2">499,000원</p>
+                  <p className="text-sm text-gray-500 mb-4">+ 유지보수 49,000원/월</p>
+                  <ul className="space-y-3 text-gray-600">
+                    <li className="flex items-center">
+                      <svg className="w-5 h-5 mr-2 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
                       </svg>
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 text-center">엔터프라이즈 호스팅 패키지</h3>
-                    <div className="text-center">
-                      <span className="text-3xl font-bold text-blue-800">499,000</span>
-                      <span className="text-gray-600">원</span>
-                      <p className="mt-1 text-sm text-gray-600">+ 유지보수 월 39,000원</p>
-                    </div>
-                    <div className="mt-2 text-center">
-                      <span className="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">AWS 배포</span>
-                    </div>
-                    <ul className="space-y-3 text-gray-600">
-                      <li className="flex items-center">
-                        <svg className="w-5 h-5 mr-2 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        대시보드 기능 포함
-                      </li>
-                      <li className="flex items-center">
-                        <svg className="w-5 h-5 mr-2 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        AWS 서버 배포
-                      </li>
-                      <li className="flex items-center">
-                        <svg className="w-5 h-5 mr-2 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        CDN 최적화
-                      </li>
-                      <li className="flex items-center">
-                        <svg className="w-5 h-5 mr-2 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        도메인 설정 지원
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="mt-6 pt-6 border-t border-gray-200 text-center">
-                    <p className="text-sm text-gray-500">프로젝트 복잡도에 따라 일정 협의</p>
-                  </div>
-                </div>
-
-                {/* 소유권 이전 패키지 */}
-                <div className="bg-white rounded-2xl shadow-lg p-8 transform hover:scale-[1.02] transition-all duration-300 flex flex-col h-full">
-                  <div className="space-y-4 flex-grow">
-                    <div className="h-16 flex items-center justify-center">
-                      <svg className="w-12 h-12 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                      Next.js + Node.js 풀스택 개발
+                    </li>
+                    <li className="flex items-center">
+                      <svg className="w-5 h-5 mr-2 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
                       </svg>
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 text-center">소유권 이전 패키지</h3>
-                    <div className="text-center">
-                      <span className="text-3xl font-bold text-blue-800">699,000</span>
-                      <span className="text-gray-600">원</span>
-                    </div>
-                    <div className="mt-2 text-center">
-                      <span className="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">일시불, 이후 유지비 없음</span>
-                    </div>
-                    <ul className="space-y-3 text-gray-600">
-                      <li className="flex items-center">
-                        <svg className="w-5 h-5 mr-2 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        전체 소스코드
-                      </li>
-                      <li className="flex items-center">
-                        <svg className="w-5 h-5 mr-2 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        데이터베이스 스키마
-                      </li>
-                      <li className="flex items-center">
-                        <svg className="w-5 h-5 mr-2 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        기술 문서 제공
-                      </li>
-                      <li className="flex items-center">
-                        <svg className="w-5 h-5 mr-2 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        설정 가이드
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="mt-6 pt-6 border-t border-gray-200 text-center">
-                    <p className="text-sm text-gray-500">프로젝트 완료 후 제공</p>
-                  </div>
+                      MySQL DB 구축 및 연동
+                    </li>
+                    <li className="flex items-center">
+                      <svg className="w-5 h-5 mr-2 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
+                      </svg>
+                      AWS 서버 호스팅 설정
+                    </li>
+                    <li className="flex items-center">
+                      <svg className="w-5 h-5 mr-2 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
+                      </svg>
+                      첫 달 유지보수 무료
+                    </li>
+                  </ul>
                 </div>
               </div>
 
