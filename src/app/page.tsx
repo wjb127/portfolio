@@ -49,7 +49,7 @@ const portfolioItems = [
     사용자 인증, 게시글 관리 등 핵심 기능을 구현했으며, JWT 토큰 기반 인증과 권한 기반 접근 제어를 적용했습니다. 
     Vercel과 AWS를 활용한 클라우드 배포 경험을 통해 실제 운영 환경에서의 개발 역량을 쌓았습니다.`,
     imageUrl: '/portfolio/blog-platform.jpg',
-    link: 'https://blog-platform.example.com',
+    link: 'https://frontend-aws-six.vercel.app/',
     tags: [
       'Next.js',
       'Node.js',
