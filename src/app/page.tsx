@@ -437,8 +437,8 @@ export default function Home() {
               {/* 핵심 메시지 3줄 */}
               <div className="space-y-6 mb-8">
                 <p className="text-2xl md:text-3xl text-gray-800 font-bold">
-                  결과물 먼저 보고 결제하세요
-                  <span className="text-blue-600"> - 100% 환불 보장</span>
+                  결과물 먼저 확인, 마음에 들 때만 결제
+                  <span className="text-blue-600"> - 후불제 진행</span>
                 </p>
                 
                 <p className="text-xl md:text-2xl text-gray-700">
