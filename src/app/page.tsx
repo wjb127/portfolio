@@ -40,6 +40,25 @@ const portfolioItems = [
     imageUrl: "/portfolio/analytics-dashboard.jpg",
     link: "https://ebook-landing-bh81r2n5q-seungbeen-wis-projects.vercel.app/dashboard",
     tags: ["Next.js", "Supabase", "Tailwind CSS", "Real-time Data"]
+  },
+  {
+    id: 'blog-platform',
+    title: '블로그 플랫폼',
+    fullTitle: '풀스택 블로그 플랫폼',
+    description: `Next.js와 Node.js를 활용한 풀스택 블로그 플랫폼입니다. 
+    사용자 인증, 게시글 관리 등 핵심 기능을 구현했으며, JWT 토큰 기반 인증과 권한 기반 접근 제어를 적용했습니다. 
+    Vercel과 AWS를 활용한 클라우드 배포 경험을 통해 실제 운영 환경에서의 개발 역량을 쌓았습니다.`,
+    imageUrl: '/portfolio/blog-platform.jpg',
+    link: 'https://blog-platform.example.com',
+    tags: [
+      'Next.js',
+      'Node.js',
+      'AWS',
+      'MySQL',
+      'TypeScript',
+      'Tailwind CSS',
+      'EC2'
+    ]
   }
 ];
 
